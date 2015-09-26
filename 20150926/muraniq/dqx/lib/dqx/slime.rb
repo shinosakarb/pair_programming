@@ -8,14 +8,6 @@ module Dqx
     attribute :hit_point, Integer
     attribute :experience_point, Integer
 
-    #def Initialize
-    #  self.name = "スライム"
-    #  self.attack_power = 5
-    #  self.defence_power = 3
-    #  self.hit_point = 3
-    #  self.experience_point = 1
-    #end
-
     def attack(hero)
       puts name + "の攻撃"
       base_damage = (attack_power * 2 - hero.defence_power) / 2
@@ -32,6 +24,14 @@ module Dqx
 
     def defence(damage)
       self.hit_point -= damage
+    end
+
+    def alive?
+      if hit_point <= 0
+        false
+      else
+        true
+      end
     end
   end
 end

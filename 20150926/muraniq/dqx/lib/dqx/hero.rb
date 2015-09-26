@@ -8,18 +8,7 @@ module Dqx
     attribute :hit_point, Integer
     attribute :magic_power, Integer
 
-    #def Initialize
-    #  self.level = 1
-    #  self.attack_power = 4
-    #  self.defence_power = 4
-    #  self.hit_point = 15
-    #  self.magic_power = 0
-    #end
-
     def attack(slime)
-      #p "敵の守備力".concat(enemy_defence_power.to_s)
-      #p "勇者の攻撃力".concat(attack_power.to_s)
-
       if critical?
         puts "会心の一撃！"
         damage = attack_power - (attack_power / 2) * rand(256) / 256
@@ -41,6 +30,7 @@ module Dqx
     end
 
     def critical?
+    # 32分の1の確立で会心の一撃が出る
       case (rand(32) + 1) % 32
       when 0
         true

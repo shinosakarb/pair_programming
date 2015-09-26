@@ -4,10 +4,7 @@ module Dqx
       hero = Hero.new(:level => 1, :attack_power => 4, :defence_power => 4, \
                       :hit_point => 15, :magic_power => 0)
       while(true)
-        case self.combat(hero)
-        when nil
-          break
-        end
+        self.combat(hero)
       end
     end
 
@@ -17,10 +14,10 @@ module Dqx
       
       puts slime.name + ("が現れた！")
       
-      while(true)
+      while(slime.alive?)
         unless hero.alive?
           puts "勇者は死んでしまった"
-          break
+          exit
         end
 
         puts "勇者のHP" + hero.hit_point.to_s
@@ -31,12 +28,11 @@ module Dqx
           hero.attack(slime)
         when "2"
           puts "逃げ出した！"
-          break
+          exit
         end
 
         if slime.hit_point <= 0
           puts slime.name + ("をやっつけた！")
-          break
         end
 
         slime.attack(hero)
