@@ -10,8 +10,10 @@ module Dragoon
         puts "王様に呼ばれた勇者が、ドラゴンを倒した。"
 
         print "勇者の名前 > "
-        brave = STDIN.gets.chomp.to_s
-        puts "勇者 #{brave} !"
+        stdin = STDIN.gets.chomp.to_s
+        brave = Dragoon::Brave.new(stdin)
+
+        puts "勇者 #{brave.name} !"
 
         puts "スライムがあらわれた！"
         loop do
@@ -21,9 +23,9 @@ module Dragoon
 
           stdin = gets.chomp.to_i
           if stdin == 1
-            puts "#{brave}は スライム　をこうげきした！"
+            puts "#{brave.name}は スライム　をこうげきした！"
           else
-            puts "#{brave}は　にげだした！"
+            puts "#{brave.name}は　にげだした！"
             break
             exit
           end
