@@ -39,6 +39,8 @@ class Game
         puts "#{@monster.name}HP：#{@monster.hit_point}"
         if @monster.hit_point <= 0
           puts "#{@monster.name}は倒れた。"
+          @hero.experience_point += @monster.experience_point
+          puts "経験値を#{@hero.experience_point}手に入れた！"          
           break
         end
 
@@ -59,7 +61,7 @@ class Game
 end
 
 class Hero
-  attr_accessor :level, :attack_power, :defense_power, :hit_point, :magic_power
+  attr_accessor :level, :attack_power, :defense_power, :hit_point, :magic_power, :experience_point
 
   def initialize
     self.level = 1
@@ -67,6 +69,7 @@ class Hero
     self.defense_power = 4
     self.hit_point = 15
     self.magic_power = 0
+    self.experience_point = 0
   end
 
   def attack(monster)
