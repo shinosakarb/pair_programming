@@ -44,7 +44,7 @@ class Hero
 
   def critical_hit
 		# 勇者の攻撃力 -（勇者の攻撃力／２）＊（０～２５５）／２５６
-		attack_power -(attack_power / 2) * (0..255).to_a.sample / 256
+		(attack_power - (attack_power / 2) * (0..255).to_a.sample) / 256
 	end
 end
 
