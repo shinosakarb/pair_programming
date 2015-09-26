@@ -1,14 +1,22 @@
 #!/usr/bin/env ruby
 
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+require 'draque'
 
-puts 'スライムが現れた!'
+monster = Monster.new('スライム')
+puts "#{monster.name}が現れた!"
 puts
+hero = Hero.new
 loop do
-  puts '1. たたかう'
-  puts '2. にげる'
-  print '? '
+  hero.action_list.each do |action|
+    puts "#{action[0]}. #{action[1]}"
+  end
+  print 'コマンドを入力してください? '
   input_command = gets.to_i
-  break if input_command == 2
-  puts '攻撃した'
+  action = hero.action(input_command)
+  if action.nil?
+    break
+  else
+    puts action
+  end
 end
