@@ -1,5 +1,8 @@
 require "dragoon/version"
-require "dragoon/brave"
+require "dragoon/character/property"
+require "dragoon/character/brave"
+require "dragoon/character/monster"
+
 
 module Dragoon
   # Your code goes here...
@@ -11,11 +14,12 @@ module Dragoon
 
         print "勇者の名前 > "
         stdin = STDIN.gets.chomp.to_s
-        brave = Dragoon::Brave.new(stdin)
-
+        brave = Dragoon::Character::Brave.new(stdin)
         puts "勇者 #{brave.name} !"
 
-        puts "スライムがあらわれた！"
+        monster = Dragoon::Character::Monster.new("スライム")
+
+        puts "#{monster.name} があらわれた！"
         loop do
           puts "1.たたかう"
           puts "2.にげる"
@@ -23,9 +27,9 @@ module Dragoon
 
           stdin = gets.chomp.to_i
           if stdin == 1
-            puts "#{brave.name}は スライム　をこうげきした！"
+            puts "#{brave.name}は #{monster.name} をこうげきした！"
           else
-            puts "#{brave.name}は　にげだした！"
+            puts "#{brave.name}は にげだした！"
             break
             exit
           end
