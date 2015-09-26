@@ -1,14 +1,20 @@
 class Game
 
   def initialize
+  	start
   end
 
   def start
-    # loop do
-
-    # end
+    loop do
+	    puts "スライムがあらわれた！"
+	    puts "1:たたかう　2:にげる"
+			
+			cmd = gets.chomp.to_i
+			if cmd == 2
+				break
+			end
+    end
   end
-
 end
 
-Geme.new
+Game.new
