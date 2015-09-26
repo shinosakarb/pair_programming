@@ -7,6 +7,7 @@ module Dqx
     attribute :defence_power, Integer
     attribute :hit_point, Integer
     attribute :magic_power, Integer
+    attribute :experience_point, Integer
 
     def attack(monster)
       if critical?

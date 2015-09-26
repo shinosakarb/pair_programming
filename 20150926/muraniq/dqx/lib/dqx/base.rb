@@ -2,16 +2,17 @@ module Dqx
   class Base
     def self.run
       hero = Hero.new(:level => 1, :attack_power => 4, :defence_power => 4, \
-                      :hit_point => 15, :magic_power => 0)
+                      :hit_point => 15, :magic_power => 0, :experience_point => 0)
       while(true)
         self.combat(hero)
       end
     end
 
     def self.combat(hero)
-      monster = Monster.new(:name => "スライム", :attack_power => 5, :defence_power => 3, \
-                        :hit_point => 3, :experience_point => 1)
-      
+      #monster = Monster.new(:name => "スライム", :attack_power => 5, :defence_power => 3, \
+      #                  :hit_point => 3, :experience_point => 1)
+      monster = Monster.generate
+
       puts monster.name + ("が現れた！")
       
       while(monster.alive?)
@@ -33,6 +34,9 @@ module Dqx
 
         if monster.hit_point <= 0
           puts monster.name + ("をやっつけた！")
+          puts monster.experience_point.to_s + ("の経験値を獲得した！")
+          hero.experience_point += monster.experience_point
+          puts "現在の経験値" + hero.experience_point.to_s
         end
 
         monster.attack(hero)
