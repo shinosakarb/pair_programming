@@ -34,12 +34,14 @@ class Hero
     self.hit_point = 15
     self.magic_power = 0
   end
-  def attack#(moster)
+  def attack(monster)
     1
-    # a = (attack_power - ) / 2
-    # Ａ＝勇者の攻撃力－敵の守備力／２
-    # Ａ＜２の場合、ダメージは１～２
-    # Ａ≧２の場合、ダメージは、｛Ａ＋（Ａ＋１）＊（０～２５５）／２５６｝／２
+    a = (attack_power - monster.defense_power) / 2
+    if a < 2
+      [1,2].sample
+    else
+      ((a+1) * (0..255).to_a.sample / 256 + a) / 2
+    end
   end
 end
 
@@ -54,6 +56,5 @@ class Monster
 		self.experience_point = 1
   end
 end
-
 
 Game.new
