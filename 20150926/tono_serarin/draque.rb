@@ -13,9 +13,9 @@ class Game
 
 			cmd = gets.chomp.to_i
 			if cmd == 1
-        @monster.hit_point -= @hero.attack
+        @monster.hit_point -= @hero.attack(@monster)
         puts "スライムHP：#{@monster.hit_point}"
-        if @monster.hit_point == 0
+        if @monster.hit_point <= 0
           break
         end
       else cmd == 2
@@ -27,6 +27,7 @@ end
 
 class Hero
   attr_accessor :level, :attack_power, :defense_power, :hit_point, :magic_power
+  
   def initialize
     self.level = 1
     self.attack_power = 4
@@ -34,8 +35,16 @@ class Hero
     self.hit_point = 15
     self.magic_power = 0
   end
+
   def attack(monster)
-    1
+  	if [1..32].sample == 1
+  		critical_hit
+  	else
+  		normal_attack(monster)
+  	end
+  end
+
+  def normal_attack(monster)
     a = (attack_power - monster.defense_power) / 2
     if a < 2
       [1,2].sample
@@ -45,8 +54,7 @@ class Hero
   end
 
   def critical_hit
-		# 勇者の攻撃力 -（勇者の攻撃力／２）＊（０～２５５）／２５６
-		(attack_power - (attack_power / 2) * (0..255).to_a.sample) / 256
+		attack_power - (attack_power / 2) * (0..255).to_a.sample / 256
 	end
 end
 

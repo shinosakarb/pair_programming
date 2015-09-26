@@ -8,4 +8,9 @@ describe Hero do
     monster = Monster.new
     expect(hero.attack(monster)).to be_a_kind_of(Integer)
   end
+
+  it 'クリティカルヒット' do
+    hero = Hero.new
+    expect(hero.critical_hit).to be >= 2
+  end
 end
