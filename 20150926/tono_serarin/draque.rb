@@ -2,17 +2,37 @@ class Game
 
   def initialize
     @hero = Hero.new
-    @monster = [Slime, Chimera, Dragon].sample.new
-    puts "#{@monster.name}があらわれた！"
   	start
   end
 
   def start
+    battle
     loop do
-	    puts "1:たたかう　2:にげる"
+      if @hero.hit_point > 0
+        puts "ゲームを続けますか？"
+        puts "1:はい　2:いいえ"
+        answer = gets.chomp.to_i
+        if answer == 1
+          battle
+        else
+          break
+        end
+      else
+        # 勇者死んでるとき
+        break
+      end
+    end
 
-			cmd = gets.chomp.to_i
-			if cmd == 1
+  end
+
+  def battle
+    @monster = [Slime, Chimera, Dragon].sample.new
+    puts "#{@monster.name}があらわれた！"
+    loop do
+      puts "1:たたかう　2:にげる"
+
+      cmd = gets.chomp.to_i
+      if cmd == 1
         hero_attack = @hero.attack(@monster)
         @monster.hit_point -= hero_attack
         puts "勇者は#{@monster.name}に#{hero_attack}のダメージ！！"
@@ -32,8 +52,8 @@ class Game
         end
 
       else cmd == 2
-				break
-			end
+        break
+      end
     end
   end
 end
