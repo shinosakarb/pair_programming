@@ -17,10 +17,18 @@ class Game
         @monster.hit_point -= hero_attack
         puts "勇者はスライムに#{hero_attack}のダメージ！！"
         puts "スライムHP：#{@monster.hit_point}"
-
         if @monster.hit_point <= 0
           break
         end
+
+        monstar_attack = @monster.attack(@hiro)
+        @hero.hit_point -= monstar_attack
+        puts "スライムは勇者に#{monstar_attack}のダメージ！！"
+        puts "勇者HP：#{@hero.hit_point}"
+        if @hero.hit_point <= 0
+          break
+        end
+
       else cmd == 2
 				break
 			end
@@ -71,6 +79,11 @@ class Monster
 		self.defense_power = 3
 		self.hit_point = 3
 		self.experience_point = 1
+  end
+
+  def attack(hero)
+  	1
+  	#Ａ＝（敵の攻撃力＊２－勇者の守備力）／２
   end
 end
 
