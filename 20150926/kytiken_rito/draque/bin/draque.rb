@@ -13,10 +13,10 @@ loop do
   end
   print 'コマンドを入力してください? '
   input_command = gets.to_i
-  action = hero.action(input_command)
-  if action.nil?
+  action = hero.action(input_command, monster)
+
+  puts action[0]
+  if action[1] == :end
     break
-  else
-    puts action
   end
 end
