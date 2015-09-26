@@ -1,4 +1,5 @@
 require "dragoon/version"
+require "dragoon/brave"
 
 module Dragoon
   # Your code goes here...
