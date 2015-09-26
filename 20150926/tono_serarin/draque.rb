@@ -45,8 +45,9 @@ class Game
         puts "#{@monster.name}HP：#{@monster.hit_point}"
         if @monster.hit_point <= 0
           puts "#{@monster.name}は倒れた。"
-          @hero.experience_point += @monster.experience_point
-          puts "経験値を#{@hero.experience_point}手に入れた！"
+          experience_point = @monster.experience_point
+          puts "経験値を#{experience_point}手に入れた！"
+          @hero.add_experience_point(experience_point)
           break
         end
 
