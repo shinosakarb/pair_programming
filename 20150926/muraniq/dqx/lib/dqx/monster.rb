@@ -1,5 +1,5 @@
 module Dqx
-  class Slime
+  class Monster
     include Virtus.model
 
     attribute :name, String

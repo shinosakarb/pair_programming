@@ -3,7 +3,7 @@ require "pry"
 require "dqx/version"
 require "dqx/base"
 require "dqx/hero"
-require "dqx/slime"
+require "dqx/monster"
 
 module Dqx
   # Your code goes here...

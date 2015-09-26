@@ -9,12 +9,12 @@ module Dqx
     end
 
     def self.combat(hero)
-      slime = Slime.new(:name => "スライム", :attack_power => 5, :defence_power => 3, \
+      monster = Monster.new(:name => "スライム", :attack_power => 5, :defence_power => 3, \
                         :hit_point => 3, :experience_point => 1)
       
-      puts slime.name + ("が現れた！")
+      puts monster.name + ("が現れた！")
       
-      while(slime.alive?)
+      while(monster.alive?)
         unless hero.alive?
           puts "勇者は死んでしまった"
           exit
@@ -25,17 +25,17 @@ module Dqx
 
         case gets.chomp
         when "1"
-          hero.attack(slime)
+          hero.attack(monster)
         when "2"
           puts "逃げ出した！"
           exit
         end
 
-        if slime.hit_point <= 0
-          puts slime.name + ("をやっつけた！")
+        if monster.hit_point <= 0
+          puts monster.name + ("をやっつけた！")
         end
 
-        slime.attack(hero)
+        monster.attack(hero)
       end
     end
   end
