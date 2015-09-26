@@ -32,7 +32,11 @@ class Game
   end
 
   def battle
-    @monster = [Slime, Chimera, Dragon].sample.new
+    # if @hero.level >= 7
+    #   @monster = DragonKing.new
+    # else
+      @monster = [Slime, Chimera, Dragon].sample.new
+    # end
     puts "#{@monster.name}があらわれた！"
     loop do
       puts "1:たたかう　2:にげる"
