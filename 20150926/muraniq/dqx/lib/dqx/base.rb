@@ -9,19 +9,18 @@ module Dqx
     end
 
     def self.combat(hero)
-      #monster = Monster.new(:name => "スライム", :attack_power => 5, :defence_power => 3, \
-      #                  :hit_point => 3, :experience_point => 1)
       monster = Monster.generate
 
-      puts monster.name + ("が現れた！")
+      puts "\n" + monster.name + ("が現れた！")
       
       while(monster.alive?)
+        puts "勇者のHP" + hero.hit_point.to_s
+
         unless hero.alive?
           puts "勇者は死んでしまった"
           exit
         end
 
-        puts "勇者のHP" + hero.hit_point.to_s
         puts "▼ コマンド？ [ 1. たたかう 2. にげる ]"
 
         case gets.chomp
@@ -37,9 +36,9 @@ module Dqx
           puts monster.experience_point.to_s + ("の経験値を獲得した！")
           hero.experience_point += monster.experience_point
           puts "現在の経験値" + hero.experience_point.to_s
+        else
+          monster.attack(hero)
         end
-
-        monster.attack(hero)
       end
     end
   end
