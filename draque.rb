@@ -8,16 +8,21 @@ class Game
 
   def initialize
     @hero = Hero.new
-  	start
+    start
   end
 
   def start
     battle
     loop do
       if @hero.hit_point > 0
-        puts "ゲームを続けますか？"
-        puts "1:はい　2:いいえ"
-        answer = gets.chomp.to_i
+        if @hero.quickness > 0
+          answer = 1
+        else
+          puts "ゲームを続けますか？"
+          puts "1:はい　2:いいえ"
+          answer = gets.chomp.to_i
+        end
+
         if answer == 1
           battle
         else
@@ -25,6 +30,7 @@ class Game
         end
       else
         # 勇者死んでるとき
+        puts  "勇者は死んでしまった.."
         break
       end
     end
@@ -65,7 +71,15 @@ class Game
         end
 
       else cmd == 2
-        break
+        hero_run_away = @hero.run_away(@monster)
+        if hero_run_away  < 0
+          @hero.quickness = hero_run_away
+          puts "逃げられなかった.."
+          break
+        else
+          puts "逃げることに成功！"
+          break
+        end
       end
     end
   end

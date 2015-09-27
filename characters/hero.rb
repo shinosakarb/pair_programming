@@ -1,5 +1,5 @@
 class Hero
-  attr_accessor :level, :attack_power, :defense_power, :hit_point, :max_hit_point, :magic_power, :experience_stock
+  attr_accessor :level, :attack_power, :defense_power, :hit_point, :max_hit_point, :magic_power, :experience_stock, :quickness
 
   def initialize
     self.level = 1
@@ -9,6 +9,7 @@ class Hero
     self.hit_point = max_hit_point
     self.magic_power = 0
     self.experience_stock = 0
+    self.quickness = 10
   end
 
   def attack(monster)
@@ -93,6 +94,10 @@ class Hero
     puts "HP: #{max_hit_point}"
     puts "MP: #{magic_power}"
     puts "=========================="
+  end
+
+  def run_away(monstar)
+    quickness * (0..255).to_a.sample - (64 || 96 || 128 || 256) * monstar.defense_power * 2
   end
 
 end
