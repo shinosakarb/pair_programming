@@ -7,14 +7,15 @@ module Dqx
     attribute :defence_power, Integer
     attribute :hit_point, Integer
     attribute :magic_power, Integer
+    attribute :experience_point, Integer
 
-    def attack(slime)
+    def attack(monster)
       if critical?
         puts "会心の一撃！"
         damage = attack_power - (attack_power / 2) * rand(256) / 256
       else
         puts "勇者の攻撃"
-        base_damage = attack_power - slime.defence_power
+        base_damage = attack_power - monster.defence_power
         if base_damage < 2
           damage = rand(2) + 1
         else
@@ -22,7 +23,7 @@ module Dqx
         end
       end
       puts "  " + damage.to_s.concat("のダメージ！")
-      slime.defence(damage)
+      monster.defence(damage)
     end
 
     def defence(damage)

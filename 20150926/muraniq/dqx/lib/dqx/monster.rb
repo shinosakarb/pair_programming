@@ -1,5 +1,5 @@
 module Dqx
-  class Slime
+  class Monster
     include Virtus.model
 
     attribute :name, String
@@ -31,6 +31,20 @@ module Dqx
         false
       else
         true
+      end
+    end
+
+    def self.generate
+      case rand(3)
+      when 0
+        Monster.new(:name => "スライム", :attack_power => 5, :defence_power => 3, \
+                    :hit_point => 3, :experience_point => 1)
+      when 1
+        Monster.new(:name => "スライムベス", :attack_power => 7, :defence_power => 3, \
+                    :hit_point => 4, :experience_point => 1)
+      when 2
+        Monster.new(:name => "ドラキー", :attack_power => 9, :defence_power => 6, \
+                    :hit_point => 5, :experience_point => 2)
       end
     end
   end

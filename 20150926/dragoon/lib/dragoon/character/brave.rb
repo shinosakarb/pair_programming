@@ -1,3 +1,4 @@
+# Dragoon::Character::Brave.new
 module Dragoon
   module Character
     class Brave
