@@ -6,7 +6,7 @@ module Dragoon
       end
 
       def property
-        @property ||= Dragoon::Character::Property.new(@name)
+        @property ||= Dragoon::Character::Monsters_property.new(@name)
       end
 
       def name
@@ -16,6 +16,10 @@ module Dragoon
       # HP
       def current_hit_point
         property.hit_point
+      end
+
+      def current_hit_point= (val)
+        property.hit_point = val
       end
 
       # MP

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Dragoon::Battle do
   describe "#start" do
-    let(:brave) {Dragoon::Character::Monster.new("dragoon")}
+    let(:brave) {Dragoon::Character::Brave.new("dragoon")}
     let(:monster) {Dragoon::Character::Monster.new("スライム")}
 
     before do
@@ -14,6 +14,7 @@ describe Dragoon::Battle do
     example "brave" do
       expect(@after_brave.current_hit_point).to eq 15
       expect(@after_brave.current_magic_power).to eq 0
+      expect(monster.current_hit_point).to be_between(0, 1)
     end
   end
 end

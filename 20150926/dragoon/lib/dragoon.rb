@@ -1,5 +1,6 @@
 require "dragoon/version"
 require "dragoon/character/property"
+require "dragoon/character/monsters_property"
 require "dragoon/character/brave"
 require "dragoon/character/monster"
 require "dragoon/battle"
