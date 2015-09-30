@@ -12,7 +12,7 @@ describe Dragoon::Battle do
     end
 
     example "brave" do
-      expect(@after_brave.current_hit_point).to eq 15
+      expect(@after_brave.current_hit_point).to be_between(9, 13)
       expect(@after_brave.current_magic_power).to eq 0
       expect(monster.current_hit_point).to be_between(0, 1)
     end
