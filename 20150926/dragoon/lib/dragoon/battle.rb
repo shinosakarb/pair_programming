@@ -16,10 +16,18 @@ module Dragoon
         stdin = gets.chomp.to_i
         if stdin == 1
           puts "#{@brave.name} は #{@monster.name} をこうげきした！"
-          brave
-          puts "#{@monster.name} のHPは #{@monster.current_hit_point}"
+          battle_outcome = brave
         else
           puts "#{@brave.name} は にげだした！"
+          break
+        end
+
+        if battle_outcome == "kill"
+          puts"#{@monster.name} を倒した！"
+          break
+        elsif battle_outcome == "killed"
+          puts "#{@brave.name} は 倒されてしまった..."
+          puts "GAME OVER"
           break
         end
       end
@@ -45,6 +53,7 @@ module Dragoon
         @monster.current_hit_point -= damage
       else
         @monster.current_hit_point = 0
+        return "kill"
       end
 
       enemy_attack_point = (@monster.property.attack * 2 - @brave.property.defense) /2
@@ -60,7 +69,10 @@ module Dragoon
         @brave.current_hit_point -= enemy_damage
       else
         @brave.current_hit_point = 0
+        retunr "killed"
       end
+
+      "continue"
     end
   end
 end
