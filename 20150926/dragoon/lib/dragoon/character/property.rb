@@ -33,6 +33,10 @@ module Dragoon
         @hit_point
       end
 
+      def hit_point=(val)
+        @hit_point = val
+      end
+
       # MP
       def magic_power
         @magic_power

@@ -19,6 +19,10 @@ module Dragoon
         property.hit_point
       end
 
+      def current_hit_point=(val)
+        property.hit_point = val
+      end
+
       # MP
       def current_magic_power
         property.magic_power
