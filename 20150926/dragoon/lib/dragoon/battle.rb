@@ -46,6 +46,21 @@ module Dragoon
       else
         @monster.current_hit_point = 0
       end
+
+      enemy_attack_point = (@monster.property.attack * 2 - @brave.property.defense) /2
+      if enemy_attack_point <= 0
+        enemy_damage = rand(2) + 1
+      elsif enemy_attack_point < @monster.property.attack * 2 + 1
+        enemy_damage = (2 + (@monster.property.attack / 2 + 1) * rand(256) / 256) / 3
+      else
+        enemy_damage = (enemy_attack_point + (enemy_attack_point + 1) * rand(256) / 256) / 2
+      end
+      
+      if @brave.current_hit_point > enemy_damage 
+        @brave.current_hit_point -= enemy_damage
+      else
+        @brave.current_hit_point = 0
+      end
     end
   end
 end
