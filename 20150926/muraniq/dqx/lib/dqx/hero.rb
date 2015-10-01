@@ -12,18 +12,19 @@ module Dqx
     def attack(monster)
       if critical?
         puts "会心の一撃！"
-        damage = attack_power - (attack_power / 2) * rand(256) / 256
+        damage = attack_power - (attack_power / 2) * Random.rand(256) / 256
       else
         puts "勇者の攻撃"
         base_damage = attack_power - monster.defence_power
         if base_damage < 2
-          damage = rand(2) + 1
+          damage = Random.rand(2) + 1
         else
-          damage = (base_damage + (base_damage + 1) * rand(256) / 256) / 2 
+          damage = (base_damage + (base_damage + 1) * Random.rand(256) / 256) / 2 
         end
       end
       puts "  " + damage.to_s.concat("のダメージ！")
       monster.defence(damage)
+      damage
     end
 
     def defence(damage)
@@ -32,7 +33,7 @@ module Dqx
 
     def critical?
     # 32分の1の確立で会心の一撃が出る
-      case (rand(32) + 1) % 32
+      case (Random.rand(32) + 1) % 32
       when 0
         true
       else
