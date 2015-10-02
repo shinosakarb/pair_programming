@@ -43,10 +43,10 @@ class Game
 
       cmd = gets.chomp.to_i
       if cmd == 1
-        hero_attack = @hero.attack(@monster)
-        @monster.hit_point -= hero_attack
-        puts "勇者は#{@monster.name}に#{hero_attack}のダメージ！！"
-        puts "#{@monster.name}HP：#{@monster.hit_point}"
+
+        @monster.hit_point -= @hero.attack(@monster)
+        @monster.display_state
+
         if @monster.hit_point <= 0
           puts "#{@monster.name}は倒れた。"
           experience_point = @monster.experience_point
@@ -55,10 +55,9 @@ class Game
           break
         end
 
-        monster_attack = @monster.attack(@hero)
-        @hero.hit_point -= monster_attack
-        puts "#{@monster.name}は勇者に#{monster_attack}のダメージ！！"
-        puts "勇者HP：#{@hero.hit_point}"
+        @hero.hit_point -= @monster.attack(@hero)
+        @hero.display_state
+
         if @hero.hit_point <= 0
           puts "勇者は死んでしまった..."
           break
