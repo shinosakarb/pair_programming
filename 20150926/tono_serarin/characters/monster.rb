@@ -1,12 +1,11 @@
 class Monster
-  attr_accessor :name, :attack_power, :defense_power, :hit_point, :magic_power, :experience_point
+  attr_accessor :name, :attack_power, :defense_power, :hit_point, :experience_point
 
   def initialize
     self.name = "スライム"
     self.attack_power = 5
     self.defense_power = 3
     self.hit_point = 3
-    self.magic_power = 0
     self.experience_point = 1
   end
 
