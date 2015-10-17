@@ -1,5 +1,5 @@
 class Hero
-  attr_accessor :level, :attack_power, :defense_power, :hit_point, :max_hit_point, :magic_power, :experience_stock
+  attr_accessor :level, :attack_power, :defense_power, :hit_point, :max_hit_point, :magic_power, :experience_stock, :quickness
 
   def initialize
     self.level = 1
@@ -9,16 +9,15 @@ class Hero
     self.hit_point = max_hit_point
     self.magic_power = 0
     self.experience_stock = 0
+    self.quickness = 10
   end
 
   def attack(monster)
     if (1..32).to_a.sample == 1
-      hero_attack = critical_hit
+      critical_hit
     else
-      hero_attack = normal_attack(monster)
+      normal_attack(monster)
     end
-    puts "勇者は#{monster.name}に#{hero_attack}のダメージ！！"
-    hero_attack
   end
 
   def normal_attack(monster)
@@ -97,10 +96,8 @@ class Hero
     puts "=========================="
   end
 
-  def display_state
-    puts "=========================="
-    puts "勇者 LEVEL: #{ level } HP：#{ hit_point }"
-    puts "=========================="
+  def run_away(monstar)
+    quickness * (0..255).to_a.sample - (64 || 96 || 128 || 256) * monstar.defense_power * 2
   end
 
 end

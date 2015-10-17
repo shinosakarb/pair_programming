@@ -8,16 +8,21 @@ class Game
 
   def initialize
     @hero = Hero.new
-  	start
+    start
   end
 
   def start
     battle
     loop do
       if @hero.hit_point > 0
-        puts "ゲームを続けますか？"
-        puts "1:はい　2:いいえ"
-        answer = gets.chomp.to_i
+        if @hero.quickness > 0
+          answer = 1
+        else
+          puts "ゲームを続けますか？"
+          puts "1:はい　2:いいえ"
+          answer = gets.chomp.to_i
+        end
+
         if answer == 1
           battle
         else
@@ -25,6 +30,7 @@ class Game
         end
       else
         # 勇者死んでるとき
+        puts  "勇者は死んでしまった.."
         break
       end
     end
@@ -43,10 +49,10 @@ class Game
 
       cmd = gets.chomp.to_i
       if cmd == 1
-
-        @monster.hit_point -= @hero.attack(@monster)
-        @monster.display_state
-
+        hero_attack = @hero.attack(@monster)
+        @monster.hit_point -= hero_attack
+        puts "勇者は#{@monster.name}に#{hero_attack}のダメージ！！"
+        puts "#{@monster.name}HP：#{@monster.hit_point}"
         if @monster.hit_point <= 0
           puts "#{@monster.name}は倒れた。"
           experience_point = @monster.experience_point
@@ -55,16 +61,25 @@ class Game
           break
         end
 
-        @hero.hit_point -= @monster.attack(@hero)
-        @hero.display_state
-
+        monster_attack = @monster.attack(@hero)
+        @hero.hit_point -= monster_attack
+        puts "#{@monster.name}は勇者に#{monster_attack}のダメージ！！"
+        puts "勇者HP：#{@hero.hit_point}"
         if @hero.hit_point <= 0
           puts "勇者は死んでしまった..."
           break
         end
 
       else cmd == 2
-        break
+        hero_run_away = @hero.run_away(@monster)
+        if hero_run_away  < 0
+          @hero.quickness = hero_run_away
+          puts "逃げられなかった.."
+          break
+        else
+          puts "逃げることに成功！"
+          break
+        end
       end
     end
   end
