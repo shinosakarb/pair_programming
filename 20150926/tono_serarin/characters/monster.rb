@@ -14,16 +14,24 @@ class Monster
     a = (attack_power * 2 - hero.defense_power) / 2
     b = (attack_power / 2) + 1
     if a <= 0
-      [1,2].sample
+      monster_attack = [1,2].sample
     else
       random = (0..255).to_a.sample
       if a < b
         #ダメージは、｛２＋（敵の攻撃力／２＋１）＊（０～２５５）／２５６｝／３
-        (b * random  / 256 + 2) / 3
+        monster_attack = (b * random  / 256 + 2) / 3
       else
         # Ａ＞敵の攻撃力／２＋１の場合、ダメージは、｛Ａ＋（Ａ＋１）＊（０～２５５）／２５６｝／２
-        ((a + 1) * random / 256 + 2) / 2
+        monster_attack = ((a + 1) * random / 256 + 2) / 2
       end
     end
+    puts "#{name}は勇者に#{monster_attack}のダメージ！！"
+    monster_attack
+  end
+
+  def display_state
+    puts "=========================="
+    puts "#{ name }HP：#{ hit_point }"
+    puts "=========================="
   end
 end

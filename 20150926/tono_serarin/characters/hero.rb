@@ -13,10 +13,12 @@ class Hero
 
   def attack(monster)
     if (1..32).to_a.sample == 1
-      critical_hit
+      hero_attack = critical_hit
     else
-      normal_attack(monster)
+      hero_attack = normal_attack(monster)
     end
+    puts "勇者は#{monster.name}に#{hero_attack}のダメージ！！"
+    hero_attack
   end
 
   def normal_attack(monster)
@@ -92,6 +94,12 @@ class Hero
     puts "防御力: #{attack_power}"
     puts "HP: #{max_hit_point}"
     puts "MP: #{magic_power}"
+    puts "=========================="
+  end
+
+  def display_state
+    puts "=========================="
+    puts "勇者 LEVEL: #{ level } HP：#{ hit_point }"
     puts "=========================="
   end
 
